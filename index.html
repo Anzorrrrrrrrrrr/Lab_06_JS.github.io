@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання з JavaScript</title>
+  <script>
+    // Завдання 2 – Годинник з оновленням
+    function clock() {
+      let now = new Date();
+
+      // час
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      let seconds = now.getSeconds();
+      let timeStr = hours + ((minutes < 10) ? ":0" : ":") + minutes + ((seconds < 10) ? ":0" : ":") + seconds;
+
+      // дата
+      let date = now.getDate();
+      let month = now.getMonth() + 1;
+      let year = now.getFullYear(); // краще, ніж getYear()
+      let dateStr = month + ((date < 10) ? "/0" : "/") + date + "/" + year;
+
+      document.clock.time.value = timeStr;
+      document.clock.date.value = dateStr;
+
+      setTimeout(clock, 1000);
+    }
+
+    // Завдання 3 – Масив
+    function showArray() {
+      let myArray = [];
+      myArray[0] = "first element";
+      myArray[1] = "second element";
+      myArray[2] = "third element";
+
+      let output = "";
+      for (let i = 0; i < 3; i++) {
+        output += myArray[i] + "<br>";
+      }
+
+      document.getElementById("arrayOutput").innerHTML = output;
+    }
+
+    // Завдання 1 – Поточна дата і час
+    function showStaticDateTime() {
+      let now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      if (minutes < 10) minutes = "0" + minutes;
+
+      let timeStr = "Time: " + hours + ":" + minutes + "<br>";
+      let dateStr = "Date: " + (now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear();
+
+      document.getElementById("staticDateTime").innerHTML = timeStr + dateStr;
+    }
+  </script>
+</head>
+<body onload="clock(); showArray(); showStaticDateTime();">
+
+  <h2>Завдання 1 – Статична дата і час</h2>
+  <div id="staticDateTime"></div>
+
+  <h2>Завдання 2 – Годинник у реальному часі</h2>
+  <form name="clock">
+    Час: <input type="text" name="time" size="10"><br>
+    Дата: <input type="text" name="date" size="10">
+  </form>
+
+  <h2>Завдання 3 – Масив</h2>
+  <div id="arrayOutput"></div>
+
+</body>
+</html>
